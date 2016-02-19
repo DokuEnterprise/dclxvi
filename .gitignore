@@ -1,0 +1,9 @@
+*.o
+*.so
+asfunctions.a
+bilintest-as
+bilintest-c
+bilintest-check
+speedtest-as
+speedtest-c
+speedtest-check
