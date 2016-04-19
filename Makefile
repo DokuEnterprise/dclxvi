@@ -23,19 +23,19 @@ bilintest-check: bilintest.c linefunction.c optate.c fpe.c fp2e.c fp6e.c fp12e.c
 	$(CPP) $(CPPFLAGS) -DNTESTS=20 -o $@ $^
 
 bilintest-c: bilintest.c linefunction.c optate.c fpe.c fp2e.c fp6e.c fp12e.c curvepoint_fp.c twistpoint_fp2.c final_expo.c scalar.c parameters.c mul.c mydouble.c
-	$(CC) $(CFLAGS) $(LFLAGS) -DNTESTS=1000 -o $@ $^
+	$(CC) $(CFLAGS) -DNTESTS=1000 -o $@ $^ $(LFLAGS)
 
 bilintest-as: bilintest.c linefunction.c optate.c fpe.c fp2e.c fp6e.c fp12e.c curvepoint_fp.c twistpoint_fp2.c final_expo.c scalar.c parameters.c mul.c mydouble.c asfunctions.a
-	$(CC) $(CFLAGS) $(LFLAGS) -DQHASM -DNTESTS=1000000 -o $@ $^
+	$(CC) $(CFLAGS) -DQHASM -DNTESTS=1000000 -o $@ $^ $(LFLAGS)
 
 speedtest-check: speedtest.c linefunction.c optate.c fpe.c fp2e.c fp6e.c fp12e.c curvepoint_fp.c twistpoint_fp2.c final_expo.c scalar.c parameters.c mul.c mydouble.c
 	$(CPP) $(CPPFLAGS) -o $@ $^
 
 speedtest-c: speedtest.c linefunction.c optate.c fpe.c fp2e.c fp6e.c fp12e.c curvepoint_fp.c twistpoint_fp2.c final_expo.c scalar.c parameters.c mul.c mydouble.c
-	$(CC) $(CFLAGS) $(LFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ $(LFLAGS)
 
 speedtest-as: speedtest.c linefunction.c optate.c fpe.c fp2e.c fp6e.c fp12e.c curvepoint_fp.c twistpoint_fp2.c final_expo.c scalar.c parameters.c mul.c mydouble.c asfunctions.a
-	$(CC) $(CFLAGS) $(LFLAGS) -DQHASM -o $@ $^
+	$(CC) $(CFLAGS) -DQHASM -o $@ $^ $(LFLAGS)
 
 %.o: %.s
 	$(CC) $(CFLAGS) -c -o $@ $^
