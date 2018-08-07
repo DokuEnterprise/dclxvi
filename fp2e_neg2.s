@@ -1,4 +1,4 @@
-# File:   dclxvi-20110718/fp2e_neg2.s
+# File:   dclxvi-20130329/fp2e_neg2.s
 # Author: Ruben Niederhagen, Peter Schwabe
 # Public Domain
 
@@ -10,6 +10,7 @@
 .globl fp2e_neg2_qhasm
 _fp2e_neg2_qhasm:
 fp2e_neg2_qhasm:
+push %rbp
 mov %rsp,%r11
 and $31,%r11
 add $0,%r11
@@ -114,8 +115,8 @@ movdqa 176(%rdi),%xmm11
 # qhasm: int6464 1t0
 
 # qhasm: 1t0 = MONE_MONE
-# asm 1: movdqa MONE_MONE@GOTPCREL(%rip),<1t0=int6464#13
-# asm 2: movdqa MONE_MONE@GOTPCREL(%rip),<1t0=%xmm12
+# asm 1: movdqa MONE_MONE,<1t0=int6464#13
+# asm 2: movdqa MONE_MONE,<1t0=%xmm12
 mov MONE_MONE@GOTPCREL(%rip), %rbp
 movdqa (%rbp),%xmm12
 
@@ -243,4 +244,5 @@ movdqa %xmm11,176(%rdi)
 add %r11,%rsp
 mov %rdi,%rax
 mov %rsi,%rdx
+pop %rbp
 ret

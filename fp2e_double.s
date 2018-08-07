@@ -1,4 +1,4 @@
-# File:   dclxvi-20110718/fp2e_double.s
+# File:   dclxvi-20130329/fp2e_double.s
 # Author: Ruben Niederhagen, Peter Schwabe
 # Public Domain
 
@@ -119,8 +119,8 @@ movdqa 176(%rsi),%xmm11
 # qhasm: int6464 1t0
 
 # qhasm: 1t0 = TWO_TWO
-# asm 1: movdqa TWO_TWO@GOTPCREL(%rip),<1t0=int6464#13
-# asm 2: movdqa TWO_TWO@GOTPCREL(%rip),<1t0=%xmm12
+# asm 1: movdqa TWO_TWO,<1t0=int6464#13
+# asm 2: movdqa TWO_TWO,<1t0=%xmm12
 mov TWO_TWO@GOTPCREL(%rip), %rbp
 movdqa (%rbp),%xmm12
 

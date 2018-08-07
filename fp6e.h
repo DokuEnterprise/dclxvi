@@ -1,5 +1,5 @@
 /*
- * File:   dclxvi-20110718/fp6e.h
+ * File:   dclxvi-20130329/fp6e.h
  * Author: Ruben Niederhagen, Peter Schwabe
  * Public Domain
  */
@@ -9,13 +9,13 @@
 
 #include "fp2e.h"
 
-// Elements from F_{p^6}= F_{p^2}[Y] / (Y^3 - xi)F_{p^2}[Y] are represented as aY^2 + bY + c 
+// Elements from F_{p^6}= F_{p^2}[Y] / (Y^3 - xi)F_{p^2}[Y] are represented as aY^2 + bY + c
 typedef struct fp6e_struct fp6e_struct_t;
 
 struct fp6e_struct {
-  fp2e_t m_a;
-  fp2e_t m_b;
-  fp2e_t m_c;
+	fp2e_t m_a;
+	fp2e_t m_b;
+	fp2e_t m_c;
 };
 
 typedef fp6e_struct_t fp6e_t[1];
@@ -79,6 +79,6 @@ void fp6e_frobenius_p(fp6e_t rop, const fp6e_t op);
 void fp6e_frobenius_p2(fp6e_t rop, const fp6e_t op);
 
 // Print the element to stdout:
-void fp6e_print(FILE * outfile, const fp6e_t op);
+void fp6e_print(FILE *outfile, const fp6e_t op);
 
-#endif				// ifndef FP6E_H
+#endif // ifndef FP6E_H

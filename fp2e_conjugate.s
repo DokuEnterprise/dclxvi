@@ -1,4 +1,4 @@
-# File:   dclxvi-20110718/fp2e_conjugate.s
+# File:   dclxvi-20130329/fp2e_conjugate.s
 # Author: Ruben Niederhagen, Peter Schwabe
 # Public Domain
 
@@ -119,8 +119,8 @@ movdqa 176(%rsi),%xmm11
 # qhasm: int6464 1t0
 
 # qhasm: 1t0 = ONE_MINUSONE
-# asm 1: movdqa ONE_MINUSONE@GOTPCREL(%rip),<1t0=int6464#13
-# asm 2: movdqa ONE_MINUSONE@GOTPCREL(%rip),<1t0=%xmm12
+# asm 1: movdqa ONE_MINUSONE,<1t0=int6464#13
+# asm 2: movdqa ONE_MINUSONE,<1t0=%xmm12
 mov ONE_MINUSONE@GOTPCREL(%rip), %rbp
 movdqa (%rbp),%xmm12
 

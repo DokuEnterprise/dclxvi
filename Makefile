@@ -5,37 +5,12 @@ CC=gcc
 CFLAGS=-std=c99 -O3 -fomit-frame-pointer
 LFLAGS=-lm
 
-all: as check c libdclxvipairing.so
+all: libdclxvipairing.so
 
 libdclxvipairing.so:
-	gcc -shared -Wl,-soname=libdclxvipairing.so -o libdclxvipairing.so -O3 -fomit-frame-pointer -fPIC -DQHASM linefunction.c optate.c fpe.c fp2e.c fp6e.c fp12e.c curvepoint_fp.c twistpoint_fp2.c final_expo.c scalar.c parameters.c mul.c mydouble.c fp2e_add2.s fp2e_sub2.s fp2e_double2.s fp2e_triple2.s fp2e_neg2.s fp2e_mul.s fp2e_mul_fpe.s fp2e_short_coeffred.s fp2e_add.s fp2e_sub.s fp2e_parallel_coeffmul.s fp2e_mulxi.s fp2e_double.s fp2e_triple.s fp2e_neg.s fp2e_conjugate.s fpe_mul.s fp2e_square.s consts.s
+	gcc -shared -Wl,-soname=libdclxvipairing.so -o libdclxvipairing.so -O3 -fomit-frame-pointer -fPIC -DQHASM fp2e_sub2.s scalar_sub_nored.s fp6e.c fp12e.c fp2e_neg.s fp2e_neg2.s mydouble.c fp2e.c linefunction.c fp2e_mul.s fp2e_mulxi.s scalar.c fp2e_short_coeffred.s fp2e_square.s fp2e_sub.s fp2e_double.s twistpoint_fp2.c fp2e_triple.s fp2e_mul_fpe.s fp2e_parallel_coeffmul.s fp2e_triple2.s fp2e_conjugate.s fpe.c curvepoint_fp.c fp2e_double2.s parameters.c mul.c optate.c fp2e_add.s final_expo.c fpe_mul.s consts.s fp2e_add2.s
 
-c: bilintest-c \
-	 speedtest-c
 
-as: bilintest-as \
-		speedtest-as
-
-check: bilintest-check \
-	     speedtest-check
-
-bilintest-check: bilintest.c linefunction.c optate.c fpe.c fp2e.c fp6e.c fp12e.c curvepoint_fp.c twistpoint_fp2.c final_expo.c scalar.c parameters.c mul.c mydouble.c
-	$(CPP) $(CPPFLAGS) -DNTESTS=20 -o $@ $^
-
-bilintest-c: bilintest.c linefunction.c optate.c fpe.c fp2e.c fp6e.c fp12e.c curvepoint_fp.c twistpoint_fp2.c final_expo.c scalar.c parameters.c mul.c mydouble.c
-	$(CC) $(CFLAGS) -DNTESTS=1000 -o $@ $^ $(LFLAGS)
-
-bilintest-as: bilintest.c linefunction.c optate.c fpe.c fp2e.c fp6e.c fp12e.c curvepoint_fp.c twistpoint_fp2.c final_expo.c scalar.c parameters.c mul.c mydouble.c asfunctions.a
-	$(CC) $(CFLAGS) -DQHASM -DNTESTS=1000000 -o $@ $^ $(LFLAGS)
-
-speedtest-check: speedtest.c linefunction.c optate.c fpe.c fp2e.c fp6e.c fp12e.c curvepoint_fp.c twistpoint_fp2.c final_expo.c scalar.c parameters.c mul.c mydouble.c
-	$(CPP) $(CPPFLAGS) -o $@ $^
-
-speedtest-c: speedtest.c linefunction.c optate.c fpe.c fp2e.c fp6e.c fp12e.c curvepoint_fp.c twistpoint_fp2.c final_expo.c scalar.c parameters.c mul.c mydouble.c
-	$(CC) $(CFLAGS) -o $@ $^ $(LFLAGS)
-
-speedtest-as: speedtest.c linefunction.c optate.c fpe.c fp2e.c fp6e.c fp12e.c curvepoint_fp.c twistpoint_fp2.c final_expo.c scalar.c parameters.c mul.c mydouble.c asfunctions.a
-	$(CC) $(CFLAGS) -DQHASM -o $@ $^ $(LFLAGS)
 
 %.o: %.s
 	$(CC) $(CFLAGS) -c -o $@ $^
@@ -53,12 +28,6 @@ asfunctions.a: fp2e_add2.o fp2e_sub2.o \
 .PHONY: clean
 
 clean:
-	-rm bilintest-check 
-	-rm speedtest-check 
-	-rm bilintest-c
-	-rm speedtest-c
-	-rm bilintest-as 
-	-rm speedtest-as 
 	-rm *.o
 	-rm asfunctions.a
 	-rm libdclxvipairing.so

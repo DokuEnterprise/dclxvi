@@ -1,5 +1,5 @@
 /*
- * File:   dclxvi-20110718/final_expo.h
+ * File:   dclxvi-20130329/final_expo.h
  * Author: Ruben Niederhagen, Peter Schwabe
  * Public Domain
  */
@@ -11,4 +11,4 @@
 
 void final_expo(fp12e_t rop);
 
-#endif				// ifdef FINAL_EXPO_H
+#endif // ifdef FINAL_EXPO_H

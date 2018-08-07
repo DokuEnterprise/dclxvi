@@ -1,4 +1,4 @@
-# File:   dclxvi-20110718/fp2e_triple2.s
+# File:   dclxvi-20130329/fp2e_triple2.s
 # Author: Ruben Niederhagen, Peter Schwabe
 # Public Domain
 
@@ -115,8 +115,8 @@ movdqa 176(%rdi),%xmm11
 # qhasm: int6464 1t0
 
 # qhasm: 1t0 = THREE_THREE
-# asm 1: movdqa THREE_THREE@GOTPCREL(%rip),<1t0=int6464#13
-# asm 2: movdqa THREE_THREE@GOTPCREL(%rip),<1t0=%xmm12
+# asm 1: movdqa THREE_THREE,<1t0=int6464#13
+# asm 2: movdqa THREE_THREE,<1t0=%xmm12
 mov THREE_THREE@GOTPCREL(%rip), %rbp
 movdqa (%rbp),%xmm12
 

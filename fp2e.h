@@ -1,5 +1,5 @@
 /*
- * File:   dclxvi-20110718/fp2e.h
+ * File:   dclxvi-20130329/fp2e.h
  * Author: Ruben Niederhagen, Peter Schwabe
  * Public Domain
  */
@@ -7,17 +7,16 @@
 #ifndef FP2E_H
 #define FP2E_H
 
-#include <stdio.h>
 #include "fpe.h"
 #include "mydouble.h"
+#include "scalar.h"
+#include <stdio.h>
 
 // Elements from F_{p^2}= F_p[X] / (x^2 - alpha)F_p[X] are represented as aX + b
-typedef struct fp2e_struct fp2e_struct_t;
-
-struct fp2e_struct {
-  // Arrangement in memory: (b0, a0, b1, a1, ... b11,a11)  
-  mydouble v[24];
-} __attribute__ ((aligned(16)));
+typedef struct fp2e_struct {
+	// Arrangement in memory: (b0, a0, b1, a1, ... b11,a11)
+	mydouble v[24];
+} __attribute__((aligned(16))) fp2e_struct_t;
 
 typedef fp2e_struct_t fp2e_t[1];
 
@@ -106,11 +105,11 @@ void fp2e_add(fp2e_t rop, const fp2e_t op1, const fp2e_t op2);
 void fp2e_add2(fp2e_t rop, const fp2e_t op);
 
 // Load from mem
-void fp2e_load(fp2e_struct_t * rop, const fp2e_t op);
+void fp2e_load(fp2e_struct_t *rop, const fp2e_t op);
 //void fp2e_load(fp2e_t rop, const fp2e_t op);
 
 // store to mem
-void fp2e_store(fp2e_struct_t * rop, const fp2e_t op);
+void fp2e_store(fp2e_struct_t *rop, const fp2e_t op);
 //void fp2e_store(fp2e_t rop, const fp2e_t op);
 
 #ifdef QHASM
@@ -194,7 +193,13 @@ void fp2e_parallel_coeffmul(fp2e_t rop, const fp2e_t op1, const fp2e_t op2);
 // Inverse multiple of an fp2e, store result in rop:
 void fp2e_invert(fp2e_t rop, const fp2e_t op1);
 
-// Print the element to stdout:
-void fp2e_print(FILE * outfile, const fp2e_t op);
+// Exponentiation:
+void fp2e_exp(fp2e_t rop, const fp2e_t op, const scalar_t exp);
 
-#endif				// ifndef FP2E_H
+// Square root:
+int fp2e_sqrt(fp2e_t rop, const fp2e_t op);
+
+// Print the element to stdout:
+void fp2e_print(FILE *outfile, const fp2e_t op);
+
+#endif // ifndef FP2E_H

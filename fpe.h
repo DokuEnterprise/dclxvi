@@ -1,5 +1,5 @@
 /*
- * File:   dclxvi-20110718/fpe.h
+ * File:   dclxvi-20130329/fpe.h
  * Author: Ruben Niederhagen, Peter Schwabe
  * Public Domain
  */
@@ -7,8 +7,8 @@
 #ifndef FPE_H
 #define FPE_H
 
-#include <stdio.h>
 #include "mydouble.h"
+#include <stdio.h>
 
 #ifdef BENCH
 unsigned long long int multpcycles;
@@ -24,8 +24,8 @@ unsigned long long numinvp;
 typedef struct fpe_struct fpe_struct_t;
 
 struct fpe_struct {
-  mydouble v[12];
-} __attribute__ ((aligned(16)));
+	mydouble v[12];
+} __attribute__((aligned(16)));
 
 typedef fpe_struct_t fpe_t[1];
 
@@ -88,7 +88,7 @@ void fpe_square(fpe_t rop, const fpe_t op);
 void fpe_invert(fpe_t rop, const fpe_t op1);
 
 // Print the element to stdout:
-void fpe_print(FILE * outfile, const fpe_t op);
+void fpe_print(FILE *outfile, const fpe_t op);
 
 // Convert fpe into a bytearray
 void fpe_to_bytearray(unsigned char *rop, const fpe_t op);
