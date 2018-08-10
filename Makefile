@@ -5,10 +5,10 @@ CC=gcc
 CFLAGS=-std=c99 -O3 -fomit-frame-pointer
 LFLAGS=-lm
 
-all: libdclxvipairing.so
+all: libdclxvi.so
 
-libdclxvipairing.so:
-	gcc -shared -Wl,-soname=libdclxvipairing.so -o libdclxvipairing.so -O3 -fomit-frame-pointer -fPIC -DQHASM fp2e_sub2.s scalar_sub_nored.s fp6e.c fp12e.c fp2e_neg.s fp2e_neg2.s mydouble.c fp2e.c linefunction.c fp2e_mul.s fp2e_mulxi.s scalar.c fp2e_short_coeffred.s fp2e_square.s fp2e_sub.s fp2e_double.s twistpoint_fp2.c fp2e_triple.s fp2e_mul_fpe.s fp2e_parallel_coeffmul.s fp2e_triple2.s fp2e_conjugate.s fpe.c curvepoint_fp.c fp2e_double2.s parameters.c mul.c optate.c fp2e_add.s final_expo.c fpe_mul.s consts.s fp2e_add2.s
+libdclxvi.so:
+	gcc -shared -Wl,-soname=libdclxvi.so -o libdclxvi.so -O3 -fomit-frame-pointer -fPIC -DQHASM fp2e_sub2.s scalar_sub_nored.s fp6e.c fp12e.c fp2e_neg.s fp2e_neg2.s mydouble.c fp2e.c linefunction.c fp2e_mul.s fp2e_mulxi.s scalar.c fp2e_short_coeffred.s fp2e_square.s fp2e_sub.s fp2e_double.s twistpoint_fp2.c fp2e_triple.s fp2e_mul_fpe.s fp2e_parallel_coeffmul.s fp2e_triple2.s fp2e_conjugate.s fpe.c curvepoint_fp.c fp2e_double2.s parameters.c mul.c optate.c fp2e_add.s final_expo.c fpe_mul.s consts.s fp2e_add2.s
 
 
 
@@ -30,4 +30,7 @@ asfunctions.a: fp2e_add2.o fp2e_sub2.o \
 clean:
 	-rm *.o
 	-rm asfunctions.a
-	-rm libdclxvipairing.so
+	-rm libdclxvi.so
+install:
+	cp *.h /usr/local/include/dclxvi
+	cp *.so /usr/local/lib
